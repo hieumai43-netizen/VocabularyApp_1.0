@@ -1,0 +1,464 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #eef3fb;
+  font-family: Arial, sans-serif;
+  color: #102033;
+}
+
+.app {
+  max-width: 430px;
+  min-height: 100vh;
+  margin: auto;
+  background: #f9fbff;
+  padding: 8px 10px 68px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h2 {
+  font-size: 16px;
+  margin: 6px 0;
+}
+
+.icon,
+.setting {
+  border: none;
+  background: white;
+  font-size: 17px;
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr 42px;
+  gap: 7px;
+  margin: 6px 0;
+}
+
+select {
+  border: none;
+  background: white;
+  border-radius: 10px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 13px;
+  box-shadow: 0 2px 8px #dfe7f2;
+}
+
+.modeSwitch {
+  display: flex;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.modeSwitch button {
+  flex: 1;
+  border: none;
+  padding: 8px;
+  border-radius: 12px;
+  background: #e9edf5;
+  font-weight: bold;
+}
+
+.modeSwitch .active {
+  background: #2f80ed;
+  color: white;
+}
+
+.progressText {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.progressBar {
+  height: 5px;
+  background: #e4e9f2;
+  border-radius: 20px;
+  margin: 5px 0 8px;
+}
+
+#progressFill {
+  width: 50%;
+  height: 100%;
+  background: #20c76a;
+  border-radius: 20px;
+}
+
+.card,
+.listenCard {
+  background: white;
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.star {
+  color: #2f80ed;
+  font-size: 22px;
+}
+
+.counter {
+  background: #eef1f6;
+  padding: 4px 12px;
+  border-radius: 18px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.status {
+  background: #ffe8f0;
+  color: #ff4d8d;
+  padding: 5px 9px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.mainWord {
+  text-align: center;
+  font-size: 34px;
+  font-weight: bold;
+  margin-top: 8px;
+  line-height: 1.1;
+}
+
+.mainRead {
+  text-align: center;
+  font-size: 14px;
+  color: #65758a;
+  margin: 4px;
+}
+
+.smallSpeak {
+  display: block;
+  margin: 0 auto 8px;
+  border: none;
+  background: #edf5ff;
+  border-radius: 50%;
+  padding: 7px;
+}
+
+.wordTable {
+  border: 1px solid #dfe6ef;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.wordTable div {
+  display: grid;
+  grid-template-columns: 38px 1fr auto auto;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 7px;
+  border-bottom: 1px solid #edf1f6;
+  font-size: 13px;
+}
+
+.wordTable div:last-child {
+  border-bottom: none;
+}
+
+.wordTable small {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.wordTable button,
+.exampleBox button {
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  padding: 2px;
+}
+
+.tag {
+  display: inline-block;
+  min-width: 28px;
+  text-align: center;
+  color: white;
+  padding: 3px 5px;
+  border-radius: 6px;
+  font-size: 10px;
+  margin-right: 5px;
+}
+
+.vi { background: #20c76a; }
+.ja { background: #2f80ed; }
+.en { background: #6c5ce7; }
+.cn { background: #ff7a1a; }
+.ko { background: #ff4d9d; }
+
+.exampleBox {
+  margin-top: 8px;
+  background: #effdf7;
+  border: 1px solid #c7f2df;
+  border-radius: 14px;
+  padding: 8px;
+}
+
+.exampleBox h3 {
+  margin: 0 0 4px;
+  color: #2b9b65;
+  font-size: 15px;
+}
+
+.exampleBox p {
+  margin: 4px 0;
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  gap: 8px;
+}
+
+.buttons button {
+  flex: 1;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 10px;
+  font-weight: bold;
+}
+
+#prevBtn {
+  background: #edf0f5;
+  color: #2f80ed;
+}
+
+#nextBtn {
+  background: #2f80ed;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+/* MODEL 2 */
+
+.listenTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #7b4df4;
+  font-weight: bold;
+  margin: 8px 4px;
+}
+
+.switch input {
+  display: none;
+}
+
+.switch span {
+  display: block;
+  width: 48px;
+  height: 26px;
+  background: #c7cbd4;
+  border-radius: 20px;
+  position: relative;
+}
+
+.switch span::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: 0.3s;
+}
+
+.switch input:checked + span {
+  background: #7b4df4;
+}
+
+.switch input:checked + span::after {
+  left: 25px;
+}
+
+.listenCard {
+  text-align: center;
+}
+
+.listenWord {
+  font-size: 38px;
+  font-weight: bold;
+  margin-top: 16px;
+  line-height: 1.1;
+}
+
+.listenRead {
+  color: #65758a;
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+.bigPlay {
+  margin-top: 18px;
+  width: 76px;
+  height: 76px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2f80ed, #7b4df4);
+  color: white;
+  font-size: 34px;
+}
+
+#playingText {
+  color: #65758a;
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.listenExample {
+  background: #f0f6ff;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: left;
+  font-size: 13px;
+}
+
+.audioProgress {
+  text-align: left;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#audioRange {
+  width: 100%;
+  accent-color: #7b4df4;
+}
+
+.audioControls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.audioControls button {
+  border: none;
+  background: white;
+  font-size: 20px;
+}
+
+.pause {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #7b4df4 !important;
+  color: white;
+  font-size: 28px !important;
+}
+
+.listenMenu {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: white;
+  border: 1px solid #e5eaf2;
+  border-radius: 14px;
+  padding: 7px;
+}
+
+.listenMenu button {
+  border: none;
+  background: white;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.listenMenu small {
+  font-size: 10px;
+  color: #555;
+}
+
+/* bottom nav */
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 430px;
+  width: 100%;
+  background: white;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 5px 6px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+}
+
+nav button {
+  border: none;
+  background: white;
+  font-size: 10px;
+  color: #59677c;
+}
+
+.centerBtn {
+  background: #2f80ed !important;
+  color: white !important;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  margin: auto;
+  font-size: 20px;
+}
+
+/* màn hình thấp như iPhone SE hoặc Android nhỏ */
+@media (max-height: 740px) {
+  .mainWord {
+    font-size: 30px;
+    margin-top: 5px;
+  }
+
+  .wordTable div {
+    padding: 5px 6px;
+    font-size: 12px;
+  }
+
+  .exampleBox p {
+    font-size: 11px;
+    margin: 3px 0;
+  }
+
+  .buttons button {
+    padding: 7px;
+  }
+
+  .listenWord {
+    font-size: 34px;
+    margin-top: 10px;
+  }
+
+  .bigPlay {
+    width: 68px;
+    height: 68px;
+    font-size: 30px;
+  }
+}
