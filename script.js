@@ -4,6 +4,11 @@ let currentIndex = 0;
 let currentAudio = null;
 let currentMode = "study";
 
+let autoListenTimer = null;
+let isAutoListening = false;
+
+const todayKey = "learned_" + new Date().toISOString().slice(0, 10);
+
 function $(id) {
   return document.getElementById(id);
 }
@@ -17,15 +22,109 @@ function getCurrentWord() {
   return words[currentIndex];
 }
 
+function getWordId(w) {
+  return w.id || `${w.jp}_${w.en}_${w.cn}_${w.ko}_${w.vn}`;
+}
+
+function getTodayLearned() {
+  return JSON.parse(localStorage.getItem(todayKey)) || [];
+}
+
+function saveTodayLearned() {
+  const w = getCurrentWord();
+  if (!w) return;
+
+  const wordId = getWordId(w);
+  let learned = getTodayLearned();
+
+  if (!learned.includes(wordId)) {
+    learned.push(wordId);
+    localStorage.setItem(todayKey, JSON.stringify(learned));
+  }
+}
+
+function updateTodayProgress() {
+  const learned = getTodayLearned();
+
+  const done = words.filter(w => learned.includes(getWordId(w))).length;
+  const total = words.length;
+  const percent = total > 0 ? (done / total) * 100 : 0;
+
+  setText("todayProgress", `${done} / ${total} từ`);
+
+  if ($("progressFill")) {
+    $("progressFill").style.width = percent + "%";
+  }
+}
+
+function setupCategorySelect() {
+  const select = $("categorySelect");
+  if (!select) return;
+
+  select.innerHTML = "";
+
+  const allOption = document.createElement("option");
+  allOption.value = "all";
+  allOption.textContent = `Tất cả (${allWords.length})`;
+  select.appendChild(allOption);
+
+  const categories = [...new Set(allWords.map(w => w.category).filter(Boolean))];
+
+  categories.forEach(cat => {
+    const count = allWords.filter(w => w.category === cat).length;
+
+    const option = document.createElement("option");
+    option.value = cat;
+    option.textContent = `${cat} (${count})`;
+    select.appendChild(option);
+  });
+}
+
 function langInfo(lang) {
   const w = getCurrentWord();
 
-  if (lang === "ja") return { word: w.jp, read: w.kana, ex: w.example_ja, langCode: "ja-JP", tag: "JA" };
-  if (lang === "en") return { word: w.en, read: w.ipa, ex: w.example_en, langCode: "en-US", tag: "EN" };
-  if (lang === "cn") return { word: w.cn, read: w.pinyin, ex: w.example_cn, langCode: "zh-CN", tag: "CN" };
-  if (lang === "ko") return { word: w.ko, read: w.koread, ex: w.example_ko, langCode: "ko-KR", tag: "KO" };
+  if (lang === "ja") {
+    return {
+      word: w.jp,
+      read: w.kana,
+      ex: w.example_ja,
+      langCode: "ja-JP"
+    };
+  }
 
-  return { word: w.jp, read: w.kana, ex: w.example_ja, langCode: "ja-JP", tag: "JA" };
+  if (lang === "en") {
+    return {
+      word: w.en,
+      read: w.ipa,
+      ex: w.example_en,
+      langCode: "en-US"
+    };
+  }
+
+  if (lang === "cn") {
+    return {
+      word: w.cn,
+      read: w.pinyin,
+      ex: w.example_cn,
+      langCode: "zh-CN"
+    };
+  }
+
+  if (lang === "ko") {
+    return {
+      word: w.ko,
+      read: w.koread,
+      ex: w.example_ko,
+      langCode: "ko-KR"
+    };
+  }
+
+  return {
+    word: w.jp,
+    read: w.kana,
+    ex: w.example_ja,
+    langCode: "ja-JP"
+  };
 }
 
 function showWord() {
@@ -36,7 +135,6 @@ function showWord() {
   const main = langInfo(lang);
 
   setText("counter", `${currentIndex + 1} / ${words.length}`);
-  setText("todayProgress", `${currentIndex + 1} / ${words.length} từ`);
 
   setText("mainWord", main.word);
   setText("mainRead", main.read);
@@ -67,20 +165,30 @@ function showWord() {
   setText("listenExampleText", main.ex);
   setText("audioText", `Từ ${currentIndex + 1} / ${words.length}`);
 
-  const progress = ((currentIndex + 1) / words.length) * 100;
-  if ($("progressFill")) $("progressFill").style.width = progress + "%";
-  if ($("audioRange")) $("audioRange").value = progress;
+  if ($("audioRange")) {
+    $("audioRange").value = ((currentIndex + 1) / words.length) * 100;
+  }
+
+  updateTodayProgress();
 }
 
 function nextWord() {
+  saveTodayLearned();
+
   currentIndex++;
-  if (currentIndex >= words.length) currentIndex = 0;
+  if (currentIndex >= words.length) {
+    currentIndex = 0;
+  }
+
   showWord();
 }
 
 function prevWord() {
   currentIndex--;
-  if (currentIndex < 0) currentIndex = words.length - 1;
+  if (currentIndex < 0) {
+    currentIndex = words.length - 1;
+  }
+
   showWord();
 }
 
@@ -146,7 +254,6 @@ function playBigListen() {
   const w = getCurrentWord();
 
   setText("playingText", "Đang phát...");
-
   playAudioFile(w.audio_word, info.word, info.langCode);
 }
 
@@ -156,80 +263,34 @@ function filterWords() {
   if (category === "all") {
     words = [...allWords];
   } else {
-    words = allWords.filter(w => {
-      const c = (w.category || "").toLowerCase();
-      return c.includes(category);
-    });
+    words = allWords.filter(w => w.category === category);
   }
 
   currentIndex = 0;
-
-  if (!words.length) {
-    words = [...allWords];
-    currentIndex = 0;
-  }
-
   showWord();
 }
 
 function switchToStudy() {
   currentMode = "study";
+
   $("studyMode").classList.remove("hidden");
   $("listenMode").classList.add("hidden");
+
   $("modeStudy").classList.add("active");
   $("modeListen").classList.remove("active");
 }
 
 function switchToListen() {
   currentMode = "listen";
+
   $("studyMode").classList.add("hidden");
   $("listenMode").classList.remove("hidden");
+
   $("modeStudy").classList.remove("active");
   $("modeListen").classList.add("active");
+
   showWord();
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  if (!words || words.length === 0) {
-    alert("Không có dữ liệu từ vựng");
-    return;
-  }
-
-  showWord();
-
-  $("nextBtn").addEventListener("click", nextWord);
-  $("prevBtn").addEventListener("click", prevWord);
-
-  $("speakMain").addEventListener("click", speakMainWord);
-  $("bigPlay").addEventListener("click", playBigListen);
-$("pauseBtn").addEventListener("click", function () {
-  if (isAutoListening) {
-    stopAutoListen();
-    $("pauseBtn").textContent = "▶";
-  } else {
-    startAutoListen();
-    $("pauseBtn").textContent = "Ⅱ";
-  }
-});
-
-$("autoToggle").addEventListener("change", function () {
-  if (this.checked) {
-    startAutoListen();
-    $("pauseBtn").textContent = "Ⅱ";
-  } else {
-    stopAutoListen();
-    $("pauseBtn").textContent = "▶";
-  }
-});
-
-  $("langSelect").addEventListener("change", showWord);
-  $("categorySelect").addEventListener("change", filterWords);
-
-  $("modeStudy").addEventListener("click", switchToStudy);
-  $("modeListen").addEventListener("click", switchToListen);
-  $("bottomModeBtn").addEventListener("click", switchToListen);
-  let autoListenTimer = null;
-let isAutoListening = false;
 
 function autoListenOneWord() {
   const lang = $("langSelect") ? $("langSelect").value : "ja";
@@ -244,7 +305,14 @@ function autoListenOneWord() {
     speakText(info.ex, info.langCode);
 
     autoListenTimer = setTimeout(function () {
-      nextWord();
+      saveTodayLearned();
+
+      currentIndex++;
+      if (currentIndex >= words.length) {
+        currentIndex = 0;
+      }
+
+      showWord();
 
       if (isAutoListening) {
         autoListenOneWord();
@@ -276,4 +344,46 @@ function stopAutoListen() {
 
   setText("playingText", "Đã tạm dừng");
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (!words || words.length === 0) {
+    alert("Không có dữ liệu từ vựng");
+    return;
+  }
+
+  setupCategorySelect();
+  showWord();
+
+  $("nextBtn").addEventListener("click", nextWord);
+  $("prevBtn").addEventListener("click", prevWord);
+
+  $("speakMain").addEventListener("click", speakMainWord);
+  $("bigPlay").addEventListener("click", playBigListen);
+
+  $("pauseBtn").addEventListener("click", function () {
+    if (isAutoListening) {
+      stopAutoListen();
+      $("pauseBtn").textContent = "▶";
+    } else {
+      startAutoListen();
+      $("pauseBtn").textContent = "Ⅱ";
+    }
+  });
+
+  $("autoToggle").addEventListener("change", function () {
+    if (this.checked) {
+      startAutoListen();
+      $("pauseBtn").textContent = "Ⅱ";
+    } else {
+      stopAutoListen();
+      $("pauseBtn").textContent = "▶";
+    }
+  });
+
+  $("langSelect").addEventListener("change", showWord);
+  $("categorySelect").addEventListener("change", filterWords);
+
+  $("modeStudy").addEventListener("click", switchToStudy);
+  $("modeListen").addEventListener("click", switchToListen);
+  $("bottomModeBtn").addEventListener("click", switchToListen);
 });
