@@ -2,71 +2,45 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Học từ vựng</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
 <div class="app">
-
   <header>
     <button class="icon">☰</button>
     <h2 id="appTitle">📖 Học từ vựng</h2>
     <button class="icon">🔍</button>
   </header>
 
-  <div class="filters">
-    <select id="categorySelect">
-      <option value="all">Tất cả</option>
-      <option value="life">Cuộc sống</option>
-      <option value="work">Công việc</option>
-      <option value="weather">Thời tiết</option>
-      <option value="animal">Động vật</option>
-      <option value="color">Màu sắc</option>
-      <option value="sport">Thể thao</option>
-      <option value="love">Tình yêu</option>
-    </select>
+  <div class="modeSwitch">
+    <button id="modeStudy" class="active">📖 Học</button>
+    <button id="modeListen">🎧 Nghe</button>
+  </div>
 
+  <div class="filters">
+    <select id="categorySelect"></select>
     <select id="langSelect">
       <option value="ja">Nhật - Việt</option>
       <option value="en">Anh - Việt</option>
       <option value="cn">Trung - Việt</option>
       <option value="ko">Hàn - Việt</option>
     </select>
-
     <button class="setting">⚙️</button>
   </div>
 
-  <div class="modeSwitch">
-    <button id="modeStudy" class="active">📖 Học</button>
-    <button id="modeListen">🎧 Nghe</button>
-  </div>
-
-  <!-- Bảng lựa chọn khi bấm nút Nghe -->
-  <div id="listenChoicePanel" class="listenChoicePanel hidden">
-    <div class="choiceTitle">🎧 Chọn kiểu nghe</div>
-    <button class="listenChoice active" data-plan="fun">Học vui vẻ</button>
-    <button class="listenChoice" data-plan="n5">N5 gợi ý</button>
-    <button class="listenChoice" data-plan="n4">N4 gợi ý</button>
-    <button class="listenChoice" data-plan="n3">N3 gợi ý</button>
-  </div>
-
-  <!-- MODEL 1 -->
   <main id="studyMode">
-
     <div class="progressText">
       <span>Tiến độ hôm nay</span>
       <span id="todayProgress">0 / 0 từ</span>
     </div>
-    <div class="progressBar">
-      <div id="progressFill"></div>
-    </div>
+    <div class="progressBar"><div id="progressFill"></div></div>
 
     <section class="card">
       <div class="topRow">
         <span class="star">★</span>
-        <span id="counter" class="counter">1 / 2</span>
+        <span id="counter" class="counter">1 / 85</span>
         <span id="status" class="status">Chưa nhớ</span>
       </div>
 
@@ -75,11 +49,11 @@
       <button id="speakMain" class="smallSpeak">🔊</button>
 
       <div class="wordTable">
-        <div><b class="tag vi">VI</b><span id="vn">...</span></div>
-        <div><b class="tag ja">JA</b><span id="ja">...</span><small id="kana"></small><button onclick="speak('ja')">🔊</button></div>
-        <div><b class="tag en">EN</b><span id="en">...</span><small id="ipa"></small><button onclick="speak('en')">🔊</button></div>
-        <div><b class="tag cn">CN</b><span id="cn">...</span><small id="pinyin"></small><button onclick="speak('cn')">🔊</button></div>
-        <div><b class="tag ko">KO</b><span id="ko">...</span><small id="koRead"></small><button onclick="speak('ko')">🔊</button></div>
+        <div><b class="tag vi">VI</b><span id="vn"></span></div>
+        <div><b class="tag ja">JA</b><span id="ja"></span><small id="kana"></small><button onclick="speak('ja')">🔊</button></div>
+        <div><b class="tag en">EN</b><span id="en"></span><small id="ipa"></small><button onclick="speak('en')">🔊</button></div>
+        <div><b class="tag cn">CN</b><span id="cn"></span><small id="pinyin"></small><button onclick="speak('cn')">🔊</button></div>
+        <div><b class="tag ko">KO</b><span id="ko"></span><small id="koRead"></small><button onclick="speak('ko')">🔊</button></div>
       </div>
 
       <div class="exampleBox">
@@ -98,33 +72,26 @@
     </section>
   </main>
 
-  <!-- MODEL 2 -->
   <main id="listenMode" class="hidden">
-
     <div class="listenTop">
       <span id="listenPlanTitle">🔊 Chế độ nghe tự động</span>
-      <label class="switch">
-        <input type="checkbox" id="autoToggle">
-        <span></span>
-      </label>
+      <label class="switch"><input type="checkbox" id="autoToggle"><span></span></label>
     </div>
 
     <section class="listenCard">
-      <span id="listenCounter" class="counter">1 / 20</span>
-
+      <span id="listenCounter" class="counter">1 / 5</span>
       <div id="listenWord" class="listenWord">...</div>
       <div id="listenRead" class="listenRead">...</div>
-
       <button id="bigPlay" class="bigPlay">🔊</button>
       <p id="playingText">Đang chờ...</p>
 
       <div class="listenExample">
         <b id="listenLangTag" class="tag ja">JA</b>
-        <span id="listenExampleText">...</span>
+        <span id="listenExampleText"></span>
       </div>
 
       <div class="audioProgress">
-        <span id="audioText">Từ 1 / 1000</span>
+        <span id="audioText">Từ 1 / 85</span>
         <input type="range" id="audioRange" min="0" max="100" value="0">
       </div>
 
@@ -136,7 +103,7 @@
 
       <div class="listenMenu">
         <button id="repeatBtn">Ⅱ<br><small>Tạm dừng</small></button>
-        <button id="shuffleBtn">⏪<br><small>Tua chậm</small></button>
+        <button id="slowBtn">⏪<br><small>Tua chậm</small></button>
         <button id="loopBtn">⟳<br><small>Lặp từ</small></button>
         <button id="fastBtn">⏩<br><small>Tua nhanh</small></button>
       </div>
@@ -150,9 +117,7 @@
     <button>▥<br>Thống kê</button>
     <button>⚙<br>Cài đặt</button>
   </nav>
-
 </div>
-
 <script src="data.js"></script>
 <script src="script.js"></script>
 </body>

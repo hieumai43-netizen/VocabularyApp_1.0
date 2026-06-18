@@ -4,17 +4,83 @@ let currentIndex = 0;
 let currentAudio = null;
 let currentMode = "study";
 let currentListenPlan = "fun";
-
 let autoListenTimer = null;
 let isAutoListening = false;
 
 const todayKey = "learned_" + new Date().toISOString().slice(0, 10);
 
-const listenPlans = {
-  fun: "Học vui vẻ",
-  n5: "N5 gợi ý",
-  n4: "N4 gợi ý",
-  n3: "N3 gợi ý"
+const langConfigs = {
+  ja: {
+    label: "Nhật - Việt",
+    wordKey: "jp",
+    readKey: "kana",
+    exKey: "example_ja",
+    idKey: "JP_ID",
+    tag: "JA",
+    css: "ja",
+    langCode: "ja-JP",
+    levels: [
+      { value: "1", label: "N1" },
+      { value: "2", label: "N2" },
+      { value: "3", label: "N3" },
+      { value: "4", label: "N4" },
+      { value: "5", label: "N5" }
+    ]
+  },
+  en: {
+    label: "Anh - Việt",
+    wordKey: "en",
+    readKey: "ipa",
+    exKey: "example_en",
+    idKey: "EN_ID",
+    tag: "EN",
+    css: "en",
+    langCode: "en-US",
+    levels: [
+      { value: "1", label: "A1" },
+      { value: "2", label: "A2" },
+      { value: "3", label: "B1" },
+      { value: "4", label: "B2" },
+      { value: "5", label: "C1" },
+      { value: "6", label: "C2" }
+    ]
+  },
+  cn: {
+    label: "Trung - Việt",
+    wordKey: "cn",
+    readKey: "pinyin",
+    exKey: "example_cn",
+    idKey: "CN_ID",
+    tag: "CN",
+    css: "cn",
+    langCode: "zh-CN",
+    levels: [
+      { value: "1", label: "HSK1" },
+      { value: "2", label: "HSK2" },
+      { value: "3", label: "HSK3" },
+      { value: "4", label: "HSK4" },
+      { value: "5", label: "HSK5" },
+      { value: "6", label: "HSK6" }
+    ]
+  },
+  ko: {
+    label: "Hàn - Việt",
+    wordKey: "ko",
+    readKey: "koread",
+    exKey: "example_ko",
+    idKey: "KO_ID",
+    tag: "KO",
+    css: "ko",
+    langCode: "ko-KR",
+    levels: [
+      { value: "1", label: "TOPIK1" },
+      { value: "2", label: "TOPIK2" },
+      { value: "3", label: "TOPIK3" },
+      { value: "4", label: "TOPIK4" },
+      { value: "5", label: "TOPIK5" },
+      { value: "6", label: "TOPIK6" }
+    ]
+  }
 };
 
 function $(id) {
@@ -31,12 +97,29 @@ function safeAdd(id, eventName, fn) {
   if (el) el.addEventListener(eventName, fn);
 }
 
+function getSelectedLang() {
+  const langSelect = $("langSelect");
+  return langSelect ? langSelect.value : "ja";
+}
+
+function getLangConfig(lang) {
+  return langConfigs[lang] || langConfigs.ja;
+}
+
 function getCurrentWord() {
   return words[currentIndex];
 }
 
 function getWordId(w) {
+  if (!w) return "";
   return w.id || `${w.jp}_${w.en}_${w.cn}_${w.ko}_${w.vn}`;
+}
+
+function getLevelId(w, lang) {
+  const cfg = getLangConfig(lang);
+  const raw = w ? w[cfg.idKey] : 100;
+  const n = Number(raw);
+  return Number.isFinite(n) ? n : 100;
 }
 
 function getTodayLearned() {
@@ -67,16 +150,31 @@ function updateTodayProgress() {
   const percent = total > 0 ? (done / total) * 100 : 0;
 
   setText("todayProgress", `${done} / ${total} từ`);
+  if ($("progressFill")) $("progressFill").style.width = percent + "%";
+}
 
-  if ($("progressFill")) {
-    $("progressFill").style.width = percent + "%";
-  }
+function setupLangSelect() {
+  const select = $("langSelect");
+  if (!select) return;
+
+  const oldValue = select.value || "ja";
+  select.innerHTML = "";
+
+  Object.keys(langConfigs).forEach(key => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = langConfigs[key].label;
+    select.appendChild(option);
+  });
+
+  select.value = langConfigs[oldValue] ? oldValue : "ja";
 }
 
 function setupCategorySelect() {
   const select = $("categorySelect");
   if (!select) return;
 
+  const oldValue = select.value || "all";
   select.innerHTML = "";
 
   const allOption = document.createElement("option");
@@ -93,25 +191,60 @@ function setupCategorySelect() {
     option.textContent = `${cat} (${count})`;
     select.appendChild(option);
   });
+
+  const values = [...select.options].map(op => op.value);
+  select.value = values.includes(oldValue) ? oldValue : "all";
+}
+
+function setupLevelSelect() {
+  const select = $("categorySelect");
+  if (!select) return;
+
+  const lang = getSelectedLang();
+  const cfg = getLangConfig(lang);
+  const oldValue = select.value || "all";
+
+  select.innerHTML = "";
+
+  const allOption = document.createElement("option");
+  allOption.value = "all";
+  allOption.textContent = `Tất cả (${allWords.length})`;
+  select.appendChild(allOption);
+
+  cfg.levels.forEach(level => {
+    const count = allWords.filter(w => getLevelId(w, lang) === Number(level.value)).length;
+    const option = document.createElement("option");
+    option.value = level.value;
+    option.textContent = `${level.label} (${count})`;
+    select.appendChild(option);
+  });
+
+  const unclearCount = allWords.filter(w => getLevelId(w, lang) === 100).length;
+  const unclearOption = document.createElement("option");
+  unclearOption.value = "100";
+  unclearOption.textContent = `Tất cả khác (${unclearCount})`;
+  select.appendChild(unclearOption);
+
+  const values = [...select.options].map(op => op.value);
+  select.value = values.includes(oldValue) ? oldValue : "all";
 }
 
 function langInfo(lang) {
   const w = getCurrentWord();
-  if (!w) return { word: "", read: "", ex: "", tag: "JA", css: "ja", langCode: "ja-JP" };
+  const cfg = getLangConfig(lang);
 
-  if (lang === "en") {
-    return { word: w.en, read: w.ipa, ex: w.example_en, tag: "EN", css: "en", langCode: "en-US" };
+  if (!w) {
+    return { word: "", read: "", ex: "", tag: cfg.tag, css: cfg.css, langCode: cfg.langCode };
   }
 
-  if (lang === "cn") {
-    return { word: w.cn, read: w.pinyin, ex: w.example_cn, tag: "CN", css: "cn", langCode: "zh-CN" };
-  }
-
-  if (lang === "ko") {
-    return { word: w.ko, read: w.koread, ex: w.example_ko, tag: "KO", css: "ko", langCode: "ko-KR" };
-  }
-
-  return { word: w.jp, read: w.kana, ex: w.example_ja, tag: "JA", css: "ja", langCode: "ja-JP" };
+  return {
+    word: w[cfg.wordKey] || "",
+    read: w[cfg.readKey] || "",
+    ex: w[cfg.exKey] || "",
+    tag: cfg.tag,
+    css: cfg.css,
+    langCode: cfg.langCode
+  };
 }
 
 function updateListenTag(info) {
@@ -121,55 +254,90 @@ function updateListenTag(info) {
   tag.className = `tag ${info.css}`;
 }
 
+function showEmpty() {
+  setText("counter", "0 / 0");
+  setText("mainWord", "Không có dữ liệu");
+  setText("mainRead", "");
+  setText("vn", "");
+  setText("ja", "");
+  setText("kana", "");
+  setText("en", "");
+  setText("ipa", "");
+  setText("cn", "");
+  setText("pinyin", "");
+  setText("ko", "");
+  setText("koRead", "");
+  setText("exVi", "");
+  setText("exJa", "");
+  setText("exEn", "");
+  setText("exCn", "");
+  setText("exKo", "");
+  setText("listenCounter", "0 / 0");
+  setText("listenWord", "Không có dữ liệu");
+  setText("listenRead", "");
+  setText("listenExampleText", "");
+  setText("audioText", "Từ 0 / 0");
+  updateTodayProgress();
+}
+
 function showWord() {
-  if (!words.length) return;
+  if (!words.length) {
+    showEmpty();
+    return;
+  }
+
+  if (currentIndex >= words.length) currentIndex = 0;
+  if (currentIndex < 0) currentIndex = 0;
 
   const w = getCurrentWord();
-  const lang = $("langSelect") ? $("langSelect").value : "ja";
+  const lang = getSelectedLang();
   const main = langInfo(lang);
+  const langLabel = getLangConfig(lang).label;
 
   setText("counter", `${currentIndex + 1} / ${words.length}`);
   setText("mainWord", main.word);
   setText("mainRead", main.read);
 
-  setText("vn", w.vn);
-  setText("ja", w.jp);
-  setText("kana", w.kana);
-  setText("en", w.en);
-  setText("ipa", w.ipa);
-  setText("cn", w.cn);
-  setText("pinyin", w.pinyin);
-  setText("ko", w.ko);
-  setText("koRead", w.koread);
+  setText("vn", w.vn || "");
+  setText("ja", w.jp || "");
+  setText("kana", w.kana || "");
+  setText("en", w.en || "");
+  setText("ipa", w.ipa || "");
+  setText("cn", w.cn || "");
+  setText("pinyin", w.pinyin || "");
+  setText("ko", w.ko || "");
+  setText("koRead", w.koread || "");
 
-  setText("exVi", w.example_vi);
-  setText("exJa", w.example_ja);
-  setText("exEn", w.example_en);
-  setText("exCn", w.example_cn);
-  setText("exKo", w.example_ko);
+  setText("exVi", w.example_vi || "");
+  setText("exJa", w.example_ja || "");
+  setText("exEn", w.example_en || "");
+  setText("exCn", w.example_cn || "");
+  setText("exKo", w.example_ko || "");
 
   setText("listenCounter", `${currentIndex + 1} / ${words.length}`);
   setText("listenWord", main.word);
   setText("listenRead", main.read);
   setText("listenExampleText", main.ex);
   setText("audioText", `Từ ${currentIndex + 1} / ${words.length}`);
-  setText("listenPlanTitle", `🔊 ${listenPlans[currentListenPlan]} · ${main.tag} - Việt`);
+  setText("listenPlanTitle", `🔊 Chế độ nghe tự động · ${langLabel}`);
   updateListenTag(main);
 
   if ($("audioRange")) {
-    $("audioRange").value = ((currentIndex + 1) / words.length) * 100;
+    $("audioRange").value = words.length > 0 ? ((currentIndex + 1) / words.length) * 100 : 0;
   }
 
   updateTodayProgress();
 }
 
 function nextWord() {
+  if (!words.length) return;
   saveTodayLearned();
   currentIndex = (currentIndex + 1) % words.length;
   showWord();
 }
 
 function prevWord() {
+  if (!words.length) return;
   currentIndex = (currentIndex - 1 + words.length) % words.length;
   showWord();
 }
@@ -219,37 +387,54 @@ function playAudioFile(path, fallbackText, langCode) {
 }
 
 function speak(lang) {
+  const backupIndex = currentIndex;
   const info = langInfo(lang);
+  currentIndex = backupIndex;
   speakText(info.word, info.langCode);
 }
 
 function speakExample(lang) {
+  const backupIndex = currentIndex;
   const info = langInfo(lang);
+  currentIndex = backupIndex;
   speakText(info.ex, info.langCode);
 }
 
 function speakMainWord() {
-  const lang = $("langSelect") ? $("langSelect").value : "ja";
+  const lang = getSelectedLang();
   const info = langInfo(lang);
   speakText(info.word, info.langCode);
 }
 
 function playBigListen() {
-  const lang = $("langSelect") ? $("langSelect").value : "ja";
+  const lang = getSelectedLang();
   const info = langInfo(lang);
   const w = getCurrentWord();
+  if (!w) return;
 
   setText("playingText", "Đang phát...");
   playAudioFile(w.audio_word, info.word, info.langCode);
 }
 
 function filterWords() {
-  const category = $("categorySelect").value;
+  const select = $("categorySelect");
+  const selected = select ? select.value : "all";
 
-  if (category === "all") {
-    words = [...allWords];
+  if (currentMode === "listen") {
+    const lang = getSelectedLang();
+
+    if (selected === "all") {
+      words = [...allWords];
+    } else {
+      const levelId = Number(selected);
+      words = allWords.filter(w => getLevelId(w, lang) === levelId);
+    }
   } else {
-    words = allWords.filter(w => w.category === category);
+    if (selected === "all") {
+      words = [...allWords];
+    } else {
+      words = allWords.filter(w => w.category === selected);
+    }
   }
 
   currentIndex = 0;
@@ -262,8 +447,7 @@ function hideListenChoices() {
 }
 
 function showListenChoices() {
-  const panel = $("listenChoicePanel");
-  if (panel) panel.classList.toggle("hidden");
+  switchToListen();
 }
 
 function switchToStudy() {
@@ -271,10 +455,14 @@ function switchToStudy() {
   stopAutoListen();
   hideListenChoices();
 
-  $("studyMode").classList.remove("hidden");
-  $("listenMode").classList.add("hidden");
-  $("modeStudy").classList.add("active");
-  $("modeListen").classList.remove("active");
+  setupCategorySelect();
+  filterWords();
+
+  $("studyMode")?.classList.remove("hidden");
+  $("listenMode")?.classList.add("hidden");
+
+  $("modeStudy")?.classList.add("active");
+  $("modeListen")?.classList.remove("active");
 }
 
 function switchToListen(plan) {
@@ -282,18 +470,20 @@ function switchToListen(plan) {
   if (plan) currentListenPlan = plan;
   hideListenChoices();
 
-  $("studyMode").classList.add("hidden");
-  $("listenMode").classList.remove("hidden");
-  $("modeStudy").classList.remove("active");
-  $("modeListen").classList.add("active");
+  setupLevelSelect();
+  filterWords();
 
-  showWord();
+  $("studyMode")?.classList.add("hidden");
+  $("listenMode")?.classList.remove("hidden");
+
+  $("modeStudy")?.classList.remove("active");
+  $("modeListen")?.classList.add("active");
 }
 
 function autoListenOneWord() {
   if (!isAutoListening || !words.length) return;
 
-  const lang = $("langSelect") ? $("langSelect").value : "ja";
+  const lang = getSelectedLang();
   const info = langInfo(lang);
 
   showWord();
@@ -353,14 +543,25 @@ function chooseListenPlan(plan) {
   switchToListen(currentListenPlan);
 }
 
+function adjustTopLayoutLikeMockup() {
+  const filters = document.querySelector(".filters");
+  const modeSwitch = document.querySelector(".modeSwitch");
+
+  if (filters && modeSwitch && filters.previousElementSibling !== modeSwitch) {
+    filters.parentNode.insertBefore(modeSwitch, filters);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   if (!words || words.length === 0) {
     alert("Không có dữ liệu từ vựng");
     return;
   }
 
+  adjustTopLayoutLikeMockup();
+  setupLangSelect();
   setupCategorySelect();
-  showWord();
+  filterWords();
 
   safeAdd("nextBtn", "click", nextWord);
   safeAdd("prevBtn", "click", prevWord);
@@ -378,23 +579,31 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   safeAdd("langSelect", "change", function () {
-    showWord();
+    if (currentMode === "listen") {
+      setupLevelSelect();
+    }
+    filterWords();
     if (currentMode === "listen") setText("playingText", "Đã đổi ngôn ngữ nghe");
   });
 
   safeAdd("categorySelect", "change", function () {
     filterWords();
-    if (currentMode === "listen") setText("playingText", "Đã đổi danh mục nghe");
+    if (currentMode === "listen") setText("playingText", "Đã đổi cấp độ nghe");
   });
 
   safeAdd("modeStudy", "click", switchToStudy);
-  safeAdd("modeListen", "click", showListenChoices);
-  safeAdd("bottomModeBtn", "click", showListenChoices);
+  safeAdd("modeListen", "click", function () {
+    switchToListen();
+  });
+  safeAdd("bottomModeBtn", "click", function () {
+    switchToListen();
+  });
 
   safeAdd("back15", "click", prevWord);
   safeAdd("next15", "click", nextWord);
 
   safeAdd("audioRange", "input", function () {
+    if (!words.length) return;
     const nextIndex = Math.max(0, Math.min(words.length - 1, Math.round((Number(this.value) / 100) * (words.length - 1))));
     currentIndex = nextIndex;
     showWord();

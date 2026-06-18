@@ -18,7 +18,11 @@ const vocabularyData = [
     "example_ko": "브레이크를 밟아 주세요.",
     "note": "",
     "audio_word": "audio/1_word.mp3",
-    "audio_example": "audio/1_example.mp3"
+    "audio_example": "audio/1_example.mp3",
+    "JP_ID": 100,
+    "EN_ID": 3,
+    "CN_ID": 6,
+    "KO_ID": 100
   },
   {
     "id": "2",
@@ -39,7 +43,11 @@ const vocabularyData = [
     "example_ko": "공항에 갑니다.",
     "note": "",
     "audio_word": "audio/2_word.mp3",
-    "audio_example": "audio/2_example.mp3"
+    "audio_example": "audio/2_example.mp3",
+    "JP_ID": 4,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "3",
@@ -60,7 +68,11 @@ const vocabularyData = [
     "example_ko": "이것은 제 가족입니다.",
     "note": "",
     "audio_word": "audio/3_word.mp3",
-    "audio_example": "audio/3_example.mp3"
+    "audio_example": "audio/3_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "4",
@@ -81,7 +93,11 @@ const vocabularyData = [
     "example_ko": "호텔을 예약했습니다.",
     "note": "",
     "audio_word": "audio/4_word.mp3",
-    "audio_example": "audio/4_example.mp3"
+    "audio_example": "audio/4_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 1
   },
   {
     "id": "5",
@@ -102,7 +118,11 @@ const vocabularyData = [
     "example_ko": "저는 9시에 회의가 있습니다.",
     "note": "",
     "audio_word": "audio/5_word.mp3",
-    "audio_example": "audio/5_example.mp3"
+    "audio_example": "audio/5_example.mp3",
+    "JP_ID": 4,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 2
   },
   {
     "id": "6",
@@ -123,7 +143,11 @@ const vocabularyData = [
     "example_ko": "이것은 제 가족입니다。",
     "note": "",
     "audio_word": "audio/6_word.mp3",
-    "audio_example": "audio/6_example.mp3"
+    "audio_example": "audio/6_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "7",
@@ -144,7 +168,11 @@ const vocabularyData = [
     "example_ko": "아버지는 아주 밝으십니다。",
     "note": "",
     "audio_word": "audio/7_word.mp3",
-    "audio_example": "audio/7_example.mp3"
+    "audio_example": "audio/7_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "8",
@@ -165,7 +193,11 @@ const vocabularyData = [
     "example_ko": "어머니는 요리를 아주 잘하십니다。",
     "note": "",
     "audio_word": "audio/8_word.mp3",
-    "audio_example": "audio/8_example.mp3"
+    "audio_example": "audio/8_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "9",
@@ -186,7 +218,11 @@ const vocabularyData = [
     "example_ko": "형은 운동을 좋아합니다。",
     "note": "",
     "audio_word": "audio/9_word.mp3",
-    "audio_example": "audio/9_example.mp3"
+    "audio_example": "audio/9_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "10",
@@ -207,7 +243,11 @@ const vocabularyData = [
     "example_ko": "누나는 자주 웃습니다。",
     "note": "",
     "audio_word": "audio/10_word.mp3",
-    "audio_example": "audio/10_example.mp3"
+    "audio_example": "audio/10_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "11",
@@ -228,7 +268,11 @@ const vocabularyData = [
     "example_ko": "남동생은 아주 활기찹니다。",
     "note": "",
     "audio_word": "audio/11_word.mp3",
-    "audio_example": "audio/11_example.mp3"
+    "audio_example": "audio/11_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "12",
@@ -249,7 +293,11 @@ const vocabularyData = [
     "example_ko": "여동생은 노래하는 것을 좋아합니다。",
     "note": "",
     "audio_word": "audio/12_word.mp3",
-    "audio_example": "audio/12_example.mp3"
+    "audio_example": "audio/12_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "13",
@@ -270,7 +318,11 @@ const vocabularyData = [
     "example_ko": "할아버지는 이야기를 아주 잘하십니다。",
     "note": "",
     "audio_word": "audio/13_word.mp3",
-    "audio_example": "audio/13_example.mp3"
+    "audio_example": "audio/13_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 1
   },
   {
     "id": "14",
@@ -291,7 +343,11 @@ const vocabularyData = [
     "example_ko": "할머니는 아주 다정하십니다。",
     "note": "",
     "audio_word": "audio/14_word.mp3",
-    "audio_example": "audio/14_example.mp3"
+    "audio_example": "audio/14_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 1
   },
   {
     "id": "15",
@@ -312,7 +368,11 @@ const vocabularyData = [
     "example_ko": "아이는 아주 귀엽게 웃습니다。",
     "note": "",
     "audio_word": "audio/15_word.mp3",
-    "audio_example": "audio/15_example.mp3"
+    "audio_example": "audio/15_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "16",
@@ -333,7 +393,11 @@ const vocabularyData = [
     "example_ko": "저는 역에 있습니다.",
     "note": "",
     "audio_word": "audio/16_word.mp3",
-    "audio_example": "audio/16_example.mp3"
+    "audio_example": "audio/16_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "17",
@@ -354,7 +418,11 @@ const vocabularyData = [
     "example_ko": "표를 샀습니다.",
     "note": "",
     "audio_word": "audio/17_word.mp3",
-    "audio_example": "audio/17_example.mp3"
+    "audio_example": "audio/17_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "18",
@@ -375,7 +443,11 @@ const vocabularyData = [
     "example_ko": "기차로 갑니다.",
     "note": "",
     "audio_word": "audio/18_word.mp3",
-    "audio_example": "audio/18_example.mp3"
+    "audio_example": "audio/18_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "19",
@@ -396,7 +468,11 @@ const vocabularyData = [
     "example_ko": "버스로 갑니다.",
     "note": "",
     "audio_word": "audio/19_word.mp3",
-    "audio_example": "audio/19_example.mp3"
+    "audio_example": "audio/19_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "20",
@@ -417,7 +493,11 @@ const vocabularyData = [
     "example_ko": "지도는 유용합니다.",
     "note": "",
     "audio_word": "audio/20_word.mp3",
-    "audio_example": "audio/20_example.mp3"
+    "audio_example": "audio/20_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "21",
@@ -438,7 +518,11 @@ const vocabularyData = [
     "example_ko": "제 짐은 여기 있습니다.",
     "note": "",
     "audio_word": "audio/21_word.mp3",
-    "audio_example": "audio/21_example.mp3"
+    "audio_example": "audio/21_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 2,
+    "CN_ID": 3,
+    "KO_ID": 2
   },
   {
     "id": "22",
@@ -459,7 +543,11 @@ const vocabularyData = [
     "example_ko": "여권을 가지고 있습니다.",
     "note": "",
     "audio_word": "audio/22_word.mp3",
-    "audio_example": "audio/22_example.mp3"
+    "audio_example": "audio/22_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 2,
+    "CN_ID": 5,
+    "KO_ID": 2
   },
   {
     "id": "23",
@@ -480,7 +568,11 @@ const vocabularyData = [
     "example_ko": "사진을 찍습니다.",
     "note": "",
     "audio_word": "audio/23_word.mp3",
-    "audio_example": "audio/23_example.mp3"
+    "audio_example": "audio/23_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 1
   },
   {
     "id": "24",
@@ -501,7 +593,11 @@ const vocabularyData = [
     "example_ko": "우리는 공원에 갑니다.",
     "note": "",
     "audio_word": "audio/24_word.mp3",
-    "audio_example": "audio/24_example.mp3"
+    "audio_example": "audio/24_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "25",
@@ -522,7 +618,11 @@ const vocabularyData = [
     "example_ko": "저는 여행을 좋아합니다.",
     "note": "",
     "audio_word": "audio/25_word.mp3",
-    "audio_example": "audio/25_example.mp3"
+    "audio_example": "audio/25_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 1
   },
   {
     "id": "26",
@@ -543,7 +643,11 @@ const vocabularyData = [
     "example_ko": "가게에 들어갑니다.",
     "note": "",
     "audio_word": "audio/26_word.mp3",
-    "audio_example": "audio/26_example.mp3"
+    "audio_example": "audio/26_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "27",
@@ -564,7 +668,11 @@ const vocabularyData = [
     "example_ko": "돈이 충분합니다.",
     "note": "",
     "audio_word": "audio/27_word.mp3",
-    "audio_example": "audio/27_example.mp3"
+    "audio_example": "audio/27_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "28",
@@ -585,7 +693,11 @@ const vocabularyData = [
     "example_ko": "이 가격은 좋습니다.",
     "note": "",
     "audio_word": "audio/28_word.mp3",
-    "audio_example": "audio/28_example.mp3"
+    "audio_example": "audio/28_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 1
   },
   {
     "id": "29",
@@ -606,7 +718,11 @@ const vocabularyData = [
     "example_ko": "오늘은 할인이 있습니다.",
     "note": "",
     "audio_word": "audio/29_word.mp3",
-    "audio_example": "audio/29_example.mp3"
+    "audio_example": "audio/29_example.mp3",
+    "JP_ID": 3,
+    "EN_ID": 3,
+    "CN_ID": 5,
+    "KO_ID": 3
   },
   {
     "id": "30",
@@ -627,7 +743,11 @@ const vocabularyData = [
     "example_ko": "영수증을 가지고 있습니다.",
     "note": "",
     "audio_word": "audio/30_word.mp3",
-    "audio_example": "audio/30_example.mp3"
+    "audio_example": "audio/30_example.mp3",
+    "JP_ID": 100,
+    "EN_ID": 3,
+    "CN_ID": 100,
+    "KO_ID": 2
   },
   {
     "id": "31",
@@ -648,7 +768,11 @@ const vocabularyData = [
     "example_ko": "카드로 계산합니다.",
     "note": "",
     "audio_word": "audio/31_word.mp3",
-    "audio_example": "audio/31_example.mp3"
+    "audio_example": "audio/31_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "32",
@@ -669,7 +793,11 @@ const vocabularyData = [
     "example_ko": "현금이 있습니다.",
     "note": "",
     "audio_word": "audio/32_word.mp3",
-    "audio_example": "audio/32_example.mp3"
+    "audio_example": "audio/32_example.mp3",
+    "JP_ID": 3,
+    "EN_ID": 1,
+    "CN_ID": 100,
+    "KO_ID": 2
   },
   {
     "id": "33",
@@ -690,7 +818,11 @@ const vocabularyData = [
     "example_ko": "봉투 하나 주세요.",
     "note": "",
     "audio_word": "audio/33_word.mp3",
-    "audio_example": "audio/33_example.mp3"
+    "audio_example": "audio/33_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "34",
@@ -711,7 +843,11 @@ const vocabularyData = [
     "example_ko": "이 옷이 마음에 듭니다.",
     "note": "",
     "audio_word": "audio/34_word.mp3",
-    "audio_example": "audio/34_example.mp3"
+    "audio_example": "audio/34_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "35",
@@ -732,7 +868,11 @@ const vocabularyData = [
     "example_ko": "신발을 사고 싶습니다.",
     "note": "",
     "audio_word": "audio/35_word.mp3",
-    "audio_example": "audio/35_example.mp3"
+    "audio_example": "audio/35_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "36",
@@ -753,7 +893,11 @@ const vocabularyData = [
     "example_ko": "하늘이 아름답습니다.",
     "note": "",
     "audio_word": "audio/36_word.mp3",
-    "audio_example": "audio/36_example.mp3"
+    "audio_example": "audio/36_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "37",
@@ -774,7 +918,11 @@ const vocabularyData = [
     "example_ko": "태양이 빛나고 있습니다.",
     "note": "",
     "audio_word": "audio/37_word.mp3",
-    "audio_example": "audio/37_example.mp3"
+    "audio_example": "audio/37_example.mp3",
+    "JP_ID": 4,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 2
   },
   {
     "id": "38",
@@ -795,7 +943,11 @@ const vocabularyData = [
     "example_ko": "오늘은 비가 옵니다.",
     "note": "",
     "audio_word": "audio/38_word.mp3",
-    "audio_example": "audio/38_example.mp3"
+    "audio_example": "audio/38_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "39",
@@ -816,7 +968,11 @@ const vocabularyData = [
     "example_ko": "겨울에는 눈이 옵니다.",
     "note": "",
     "audio_word": "audio/39_word.mp3",
-    "audio_example": "audio/39_example.mp3"
+    "audio_example": "audio/39_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "40",
@@ -837,7 +993,11 @@ const vocabularyData = [
     "example_ko": "오늘 바람이 시원합니다.",
     "note": "",
     "audio_word": "audio/40_word.mp3",
-    "audio_example": "audio/40_example.mp3"
+    "audio_example": "audio/40_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "41",
@@ -858,7 +1018,11 @@ const vocabularyData = [
     "example_ko": "하늘에 구름이 있습니다.",
     "note": "",
     "audio_word": "audio/41_word.mp3",
-    "audio_example": "audio/41_example.mp3"
+    "audio_example": "audio/41_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "42",
@@ -879,7 +1043,11 @@ const vocabularyData = [
     "example_ko": "오늘은 덥습니다.",
     "note": "",
     "audio_word": "audio/42_word.mp3",
-    "audio_example": "audio/42_example.mp3"
+    "audio_example": "audio/42_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "43",
@@ -900,7 +1068,11 @@ const vocabularyData = [
     "example_ko": "오늘은 춥습니다.",
     "note": "",
     "audio_word": "audio/43_word.mp3",
-    "audio_example": "audio/43_example.mp3"
+    "audio_example": "audio/43_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "44",
@@ -921,7 +1093,11 @@ const vocabularyData = [
     "example_ko": "봄은 따뜻합니다.",
     "note": "",
     "audio_word": "audio/44_word.mp3",
-    "audio_example": "audio/44_example.mp3"
+    "audio_example": "audio/44_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 2
   },
   {
     "id": "45",
@@ -942,7 +1118,11 @@ const vocabularyData = [
     "example_ko": "오늘은 날씨가 맑습니다.",
     "note": "",
     "audio_word": "audio/45_word.mp3",
-    "audio_example": "audio/45_example.mp3"
+    "audio_example": "audio/45_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "46",
@@ -963,7 +1143,11 @@ const vocabularyData = [
     "example_ko": "강아지가 아주 귀엽습니다.",
     "note": "",
     "audio_word": "audio/46_word.mp3",
-    "audio_example": "audio/46_example.mp3"
+    "audio_example": "audio/46_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "47",
@@ -984,7 +1168,11 @@ const vocabularyData = [
     "example_ko": "고양이가 자고 있습니다.",
     "note": "",
     "audio_word": "audio/47_word.mp3",
-    "audio_example": "audio/47_example.mp3"
+    "audio_example": "audio/47_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "48",
@@ -1005,7 +1193,11 @@ const vocabularyData = [
     "example_ko": "새가 노래하고 있습니다.",
     "note": "",
     "audio_word": "audio/48_word.mp3",
-    "audio_example": "audio/48_example.mp3"
+    "audio_example": "audio/48_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "49",
@@ -1026,7 +1218,11 @@ const vocabularyData = [
     "example_ko": "물고기가 헤엄치고 있습니다.",
     "note": "",
     "audio_word": "audio/49_word.mp3",
-    "audio_example": "audio/49_example.mp3"
+    "audio_example": "audio/49_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "50",
@@ -1047,7 +1243,11 @@ const vocabularyData = [
     "example_ko": "토끼가 빨리 달립니다.",
     "note": "",
     "audio_word": "audio/50_word.mp3",
-    "audio_example": "audio/50_example.mp3"
+    "audio_example": "audio/50_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 5,
+    "KO_ID": 1
   },
   {
     "id": "51",
@@ -1068,7 +1268,11 @@ const vocabularyData = [
     "example_ko": "말은 아주 튼튼합니다.",
     "note": "",
     "audio_word": "audio/51_word.mp3",
-    "audio_example": "audio/51_example.mp3"
+    "audio_example": "audio/51_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "52",
@@ -1089,7 +1293,11 @@ const vocabularyData = [
     "example_ko": "소가 풀을 먹고 있습니다.",
     "note": "",
     "audio_word": "audio/52_word.mp3",
-    "audio_example": "audio/52_example.mp3"
+    "audio_example": "audio/52_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "53",
@@ -1110,7 +1318,11 @@ const vocabularyData = [
     "example_ko": "호랑이는 아주 강합니다.",
     "note": "",
     "audio_word": "audio/53_word.mp3",
-    "audio_example": "audio/53_example.mp3"
+    "audio_example": "audio/53_example.mp3",
+    "JP_ID": 3,
+    "EN_ID": 1,
+    "CN_ID": 4,
+    "KO_ID": 2
   },
   {
     "id": "54",
@@ -1131,7 +1343,11 @@ const vocabularyData = [
     "example_ko": "코끼리는 아주 큽니다.",
     "note": "",
     "audio_word": "audio/54_word.mp3",
-    "audio_example": "audio/54_example.mp3"
+    "audio_example": "audio/54_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 4,
+    "KO_ID": 2
   },
   {
     "id": "55",
@@ -1152,7 +1368,11 @@ const vocabularyData = [
     "example_ko": "곰은 귀엽습니다.",
     "note": "",
     "audio_word": "audio/55_word.mp3",
-    "audio_example": "audio/55_example.mp3"
+    "audio_example": "audio/55_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 5,
+    "KO_ID": 2
   },
   {
     "id": "56",
@@ -1173,7 +1393,11 @@ const vocabularyData = [
     "example_ko": "저는 빨간색을 좋아합니다.",
     "note": "",
     "audio_word": "audio/56_word.mp3",
-    "audio_example": "audio/56_example.mp3"
+    "audio_example": "audio/56_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "57",
@@ -1194,7 +1418,11 @@ const vocabularyData = [
     "example_ko": "하늘은 파란색입니다.",
     "note": "",
     "audio_word": "audio/57_word.mp3",
-    "audio_example": "audio/57_example.mp3"
+    "audio_example": "audio/57_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "58",
@@ -1215,7 +1443,11 @@ const vocabularyData = [
     "example_ko": "꽃은 노란색입니다.",
     "note": "",
     "audio_word": "audio/58_word.mp3",
-    "audio_example": "audio/58_example.mp3"
+    "audio_example": "audio/58_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "59",
@@ -1236,7 +1468,11 @@ const vocabularyData = [
     "example_ko": "나무는 초록색입니다.",
     "note": "",
     "audio_word": "audio/59_word.mp3",
-    "audio_example": "audio/59_example.mp3"
+    "audio_example": "audio/59_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "60",
@@ -1257,7 +1493,11 @@ const vocabularyData = [
     "example_ko": "고양이는 흰색입니다.",
     "note": "",
     "audio_word": "audio/60_word.mp3",
-    "audio_example": "audio/60_example.mp3"
+    "audio_example": "audio/60_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "61",
@@ -1278,7 +1518,11 @@ const vocabularyData = [
     "example_ko": "검은 가방이 있습니다.",
     "note": "",
     "audio_word": "audio/61_word.mp3",
-    "audio_example": "audio/61_example.mp3"
+    "audio_example": "audio/61_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "62",
@@ -1299,7 +1543,11 @@ const vocabularyData = [
     "example_ko": "분홍 꽃이 아름답습니다.",
     "note": "",
     "audio_word": "audio/62_word.mp3",
-    "audio_example": "audio/62_example.mp3"
+    "audio_example": "audio/62_example.mp3",
+    "JP_ID": 100,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 2
   },
   {
     "id": "63",
@@ -1320,7 +1568,11 @@ const vocabularyData = [
     "example_ko": "보라색을 좋아합니다.",
     "note": "",
     "audio_word": "audio/63_word.mp3",
-    "audio_example": "audio/63_example.mp3"
+    "audio_example": "audio/63_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 2
   },
   {
     "id": "64",
@@ -1341,7 +1593,11 @@ const vocabularyData = [
     "example_ko": "오렌지는 주황색입니다.",
     "note": "",
     "audio_word": "audio/64_word.mp3",
-    "audio_example": "audio/64_example.mp3"
+    "audio_example": "audio/64_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 2
   },
   {
     "id": "65",
@@ -1362,7 +1618,11 @@ const vocabularyData = [
     "example_ko": "곰은 갈색입니다.",
     "note": "",
     "audio_word": "audio/65_word.mp3",
-    "audio_example": "audio/65_example.mp3"
+    "audio_example": "audio/65_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 2
   },
   {
     "id": "66",
@@ -1383,7 +1643,11 @@ const vocabularyData = [
     "example_ko": "저는 운동을 좋아합니다.",
     "note": "",
     "audio_word": "audio/66_word.mp3",
-    "audio_example": "audio/66_example.mp3"
+    "audio_example": "audio/66_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "67",
@@ -1404,7 +1668,11 @@ const vocabularyData = [
     "example_ko": "축구를 합니다.",
     "note": "",
     "audio_word": "audio/67_word.mp3",
-    "audio_example": "audio/67_example.mp3"
+    "audio_example": "audio/67_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 2,
+    "CN_ID": 2,
+    "KO_ID": 2
   },
   {
     "id": "68",
@@ -1425,7 +1693,11 @@ const vocabularyData = [
     "example_ko": "그는 농구를 합니다.",
     "note": "",
     "audio_word": "audio/68_word.mp3",
-    "audio_example": "audio/68_example.mp3"
+    "audio_example": "audio/68_example.mp3",
+    "JP_ID": 100,
+    "EN_ID": 2,
+    "CN_ID": 3,
+    "KO_ID": 2
   },
   {
     "id": "69",
@@ -1446,7 +1718,11 @@ const vocabularyData = [
     "example_ko": "우리는 배구를 합니다.",
     "note": "",
     "audio_word": "audio/69_word.mp3",
-    "audio_example": "audio/69_example.mp3"
+    "audio_example": "audio/69_example.mp3",
+    "JP_ID": 100,
+    "EN_ID": 3,
+    "CN_ID": 100,
+    "KO_ID": 2
   },
   {
     "id": "70",
@@ -1467,7 +1743,11 @@ const vocabularyData = [
     "example_ko": "매일 아침 달립니다.",
     "note": "",
     "audio_word": "audio/70_word.mp3",
-    "audio_example": "audio/70_example.mp3"
+    "audio_example": "audio/70_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 2,
+    "KO_ID": 1
   },
   {
     "id": "71",
@@ -1488,7 +1768,11 @@ const vocabularyData = [
     "example_ko": "수영을 좋아합니다.",
     "note": "",
     "audio_word": "audio/71_word.mp3",
-    "audio_example": "audio/71_example.mp3"
+    "audio_example": "audio/71_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 2
   },
   {
     "id": "72",
@@ -1509,7 +1793,11 @@ const vocabularyData = [
     "example_ko": "자전거를 탑니다.",
     "note": "",
     "audio_word": "audio/72_word.mp3",
-    "audio_example": "audio/72_example.mp3"
+    "audio_example": "audio/72_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 2,
+    "CN_ID": 3,
+    "KO_ID": 2
   },
   {
     "id": "73",
@@ -1530,7 +1818,11 @@ const vocabularyData = [
     "example_ko": "테니스를 합니다.",
     "note": "",
     "audio_word": "audio/73_word.mp3",
-    "audio_example": "audio/73_example.mp3"
+    "audio_example": "audio/73_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 2,
+    "CN_ID": 4,
+    "KO_ID": 2
   },
   {
     "id": "74",
@@ -1551,7 +1843,11 @@ const vocabularyData = [
     "example_ko": "배드민턴을 합니다.",
     "note": "",
     "audio_word": "audio/74_word.mp3",
-    "audio_example": "audio/74_example.mp3"
+    "audio_example": "audio/74_example.mp3",
+    "JP_ID": 100,
+    "EN_ID": 3,
+    "CN_ID": 100,
+    "KO_ID": 3
   },
   {
     "id": "75",
@@ -1572,7 +1868,11 @@ const vocabularyData = [
     "example_ko": "공원에서 산책합니다.",
     "note": "",
     "audio_word": "audio/75_word.mp3",
-    "audio_example": "audio/75_example.mp3"
+    "audio_example": "audio/75_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 1
   },
   {
     "id": "76",
@@ -1593,7 +1893,11 @@ const vocabularyData = [
     "example_ko": "사랑은 삶을 아름답게 합니다.",
     "note": "",
     "audio_word": "audio/76_word.mp3",
-    "audio_example": "audio/76_example.mp3"
+    "audio_example": "audio/76_example.mp3",
+    "JP_ID": 3,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 2
   },
   {
     "id": "77",
@@ -1614,7 +1918,11 @@ const vocabularyData = [
     "example_ko": "따뜻한 마음이 있습니다.",
     "note": "",
     "audio_word": "audio/77_word.mp3",
-    "audio_example": "audio/77_example.mp3"
+    "audio_example": "audio/77_example.mp3",
+    "JP_ID": 4,
+    "EN_ID": 1,
+    "CN_ID": 3,
+    "KO_ID": 1
   },
   {
     "id": "78",
@@ -1635,7 +1943,11 @@ const vocabularyData = [
     "example_ko": "우리는 행복합니다.",
     "note": "",
     "audio_word": "audio/78_word.mp3",
-    "audio_example": "audio/78_example.mp3"
+    "audio_example": "audio/78_example.mp3",
+    "JP_ID": 4,
+    "EN_ID": 3,
+    "CN_ID": 4,
+    "KO_ID": 2
   },
   {
     "id": "79",
@@ -1656,7 +1968,11 @@ const vocabularyData = [
     "example_ko": "당신의 미소는 아름답습니다.",
     "note": "",
     "audio_word": "audio/79_word.mp3",
-    "audio_example": "audio/79_example.mp3"
+    "audio_example": "audio/79_example.mp3",
+    "JP_ID": 3,
+    "EN_ID": 1,
+    "CN_ID": 5,
+    "KO_ID": 2
   },
   {
     "id": "80",
@@ -1677,7 +1993,11 @@ const vocabularyData = [
     "example_ko": "친구는 소중합니다.",
     "note": "",
     "audio_word": "audio/80_word.mp3",
-    "audio_example": "audio/80_example.mp3"
+    "audio_example": "audio/80_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "81",
@@ -1698,7 +2018,11 @@ const vocabularyData = [
     "example_ko": "선물을 준비합니다.",
     "note": "",
     "audio_word": "audio/81_word.mp3",
-    "audio_example": "audio/81_example.mp3"
+    "audio_example": "audio/81_example.mp3",
+    "JP_ID": 3,
+    "EN_ID": 3,
+    "CN_ID": 4,
+    "KO_ID": 2
   },
   {
     "id": "82",
@@ -1719,7 +2043,11 @@ const vocabularyData = [
     "example_ko": "꽃이 아름답습니다.",
     "note": "",
     "audio_word": "audio/82_word.mp3",
-    "audio_example": "audio/82_example.mp3"
+    "audio_example": "audio/82_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "83",
@@ -1740,7 +2068,11 @@ const vocabularyData = [
     "example_ko": "우리는 약속을 지킵니다.",
     "note": "",
     "audio_word": "audio/83_word.mp3",
-    "audio_example": "audio/83_example.mp3"
+    "audio_example": "audio/83_example.mp3",
+    "JP_ID": 4,
+    "EN_ID": 3,
+    "CN_ID": 5,
+    "KO_ID": 2
   },
   {
     "id": "84",
@@ -1761,7 +2093,11 @@ const vocabularyData = [
     "example_ko": "함께 걸어갑니다.",
     "note": "",
     "audio_word": "audio/84_word.mp3",
-    "audio_example": "audio/84_example.mp3"
+    "audio_example": "audio/84_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 1,
+    "KO_ID": 1
   },
   {
     "id": "85",
@@ -1782,6 +2118,10 @@ const vocabularyData = [
     "example_ko": "우리는 아름다운 꿈이 있습니다.",
     "note": "",
     "audio_word": "audio/85_word.mp3",
-    "audio_example": "audio/85_example.mp3"
+    "audio_example": "audio/85_example.mp3",
+    "JP_ID": 5,
+    "EN_ID": 1,
+    "CN_ID": 5,
+    "KO_ID": 2
   }
 ];
