@@ -43,6 +43,15 @@
     <button id="modeListen">🎧 Nghe</button>
   </div>
 
+  <!-- Bảng lựa chọn khi bấm nút Nghe -->
+  <div id="listenChoicePanel" class="listenChoicePanel hidden">
+    <div class="choiceTitle">🎧 Chọn kiểu nghe</div>
+    <button class="listenChoice active" data-plan="fun">Học vui vẻ</button>
+    <button class="listenChoice" data-plan="n5">N5 gợi ý</button>
+    <button class="listenChoice" data-plan="n4">N4 gợi ý</button>
+    <button class="listenChoice" data-plan="n3">N3 gợi ý</button>
+  </div>
+
   <!-- MODEL 1 -->
   <main id="studyMode">
 
@@ -93,7 +102,7 @@
   <main id="listenMode" class="hidden">
 
     <div class="listenTop">
-      <span>🔊 Chế độ nghe tự động</span>
+      <span id="listenPlanTitle">🔊 Chế độ nghe tự động</span>
       <label class="switch">
         <input type="checkbox" id="autoToggle">
         <span></span>
