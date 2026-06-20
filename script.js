@@ -9,6 +9,9 @@ let isAutoListening = false;
 
 const todayKey = "learned_" + new Date().toISOString().slice(0, 10);
 
+const appStateKey = "vocab_app_state_v3";
+const learnedByLangKey = "vocab_learned_by_lang_v3";
+
 const langConfigs = {
   ja: {
     label: "Nhật - Việt",
@@ -97,6 +100,198 @@ function safeAdd(id, eventName, fn) {
   if (el) el.addEventListener(eventName, fn);
 }
 
+
+function normalizeText(value) {
+  return String(value || "").toLowerCase().trim().replace(/\s+/g, " ");
+}
+
+function getSavedState() {
+  try {
+    return JSON.parse(localStorage.getItem(appStateKey)) || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveAppState() {
+  try {
+    const categorySelect = $("categorySelect");
+    const langSelect = $("langSelect");
+
+    localStorage.setItem(appStateKey, JSON.stringify({
+      index: currentIndex,
+      mode: currentMode,
+      listenPlan: currentListenPlan,
+      lang: langSelect ? langSelect.value : "ja",
+      category: categorySelect ? categorySelect.value : "all"
+    }));
+  } catch (e) {}
+}
+
+function restoreAppStateBeforeFilter() {
+  const state = getSavedState();
+
+  if (state.lang && $("langSelect")) $("langSelect").value = state.lang;
+  if (state.mode) currentMode = state.mode;
+  if (state.listenPlan) currentListenPlan = state.listenPlan;
+  if (Number.isFinite(Number(state.index))) currentIndex = Number(state.index);
+}
+
+function restoreCategoryAfterSetup() {
+  const state = getSavedState();
+  const select = $("categorySelect");
+  if (!select || !state.category) return;
+
+  const values = [...select.options].map(op => op.value);
+  if (values.includes(state.category)) select.value = state.category;
+}
+
+function getLearnedByLang() {
+  try {
+    return JSON.parse(localStorage.getItem(learnedByLangKey)) || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveLearnedByLang(lang, wordId) {
+  if (!lang || !wordId) return;
+
+  const learned = getLearnedByLang();
+  if (!learned[lang]) learned[lang] = [];
+
+  if (!learned[lang].includes(wordId)) {
+    learned[lang].push(wordId);
+    localStorage.setItem(learnedByLangKey, JSON.stringify(learned));
+  }
+}
+
+function getLangLearnedCount(lang) {
+  const learned = getLearnedByLang();
+  return learned[lang] ? learned[lang].length : 0;
+}
+
+function showStudyStats() {
+  const msg =
+    "📊 Thống kê học tập trên máy này\n\n" +
+    "🇯🇵 Tiếng Nhật: " + getLangLearnedCount("ja") + " từ\n" +
+    "🇬🇧 Tiếng Anh: " + getLangLearnedCount("en") + " từ\n" +
+    "🇨🇳 Tiếng Trung: " + getLangLearnedCount("cn") + " từ\n" +
+    "🇰🇷 Tiếng Hàn: " + getLangLearnedCount("ko") + " từ\n\n" +
+    "Dữ liệu này được lưu trên thiết bị đang học.";
+
+  alert(msg);
+}
+
+function findVocabularyMatch(keyword) {
+  const q = normalizeText(keyword);
+  if (!q) return null;
+
+  const searchFields = [
+    { lang: "vi", keys: ["vn", "vietnamese", "example_vi"] },
+    { lang: "ja", keys: ["jp", "kana", "example_ja"] },
+    { lang: "en", keys: ["en", "ipa", "example_en"] },
+    { lang: "cn", keys: ["cn", "pinyin", "example_cn"] },
+    { lang: "ko", keys: ["ko", "koread", "example_ko"] }
+  ];
+
+  for (const w of allWords) {
+    for (const group of searchFields) {
+      for (const key of group.keys) {
+        if (normalizeText(w[key]) === q) {
+          return { word: w, lang: group.lang === "vi" ? getSelectedLang() : group.lang };
+        }
+      }
+    }
+  }
+
+  // Không tìm gần đúng để tránh nhầm từ.
+  // Ví dụ: tìm "life" mà dữ liệu chưa có thì không được nhảy sang "love".
+  return null;
+}
+
+function searchVocabulary() {
+  const keyword = prompt("🔍 Nhập từ cần tìm\nCó thể nhập Việt / Nhật / Kana / Anh / Trung / Pinyin / Hàn:");
+
+  if (keyword === null) return;
+
+  const result = findVocabularyMatch(keyword);
+
+  if (!result) {
+    alert("📚 Từ này hiện chưa có trong bản lần này.\n✨ Bản sau sẽ cập nhật thêm nhé!");
+    return;
+  }
+
+  stopAutoListen();
+
+  if (result.lang && langConfigs[result.lang] && $("langSelect")) {
+    $("langSelect").value = result.lang;
+  }
+
+  currentMode = "study";
+  setupCategorySelect();
+
+  const categorySelect = $("categorySelect");
+  if (categorySelect) categorySelect.value = "all";
+
+  words = [...allWords];
+
+  const foundIndex = words.findIndex(w => getWordId(w) === getWordId(result.word));
+  currentIndex = foundIndex >= 0 ? foundIndex : 0;
+
+  $("studyMode")?.classList.remove("hidden");
+  $("listenMode")?.classList.add("hidden");
+  $("modeStudy")?.classList.add("active");
+  $("modeListen")?.classList.remove("active");
+
+  showWord();
+}
+
+function setupSearchButton() {
+  ["searchBtn", "searchButton", "btnSearch", "searchIcon"].forEach(id => {
+    safeAdd(id, "click", searchVocabulary);
+  });
+
+  document.querySelectorAll("button").forEach(btn => {
+    const text = (btn.textContent || "").trim();
+    const aria = (btn.getAttribute("aria-label") || "").toLowerCase();
+    const title = (btn.getAttribute("title") || "").toLowerCase();
+
+    if (
+      text.includes("🔍") ||
+      text.includes("⌕") ||
+      aria.includes("search") ||
+      aria.includes("tìm") ||
+      title.includes("search") ||
+      title.includes("tìm")
+    ) {
+      btn.addEventListener("click", searchVocabulary);
+    }
+  });
+}
+
+function setupStatsButton() {
+  ["statsBtn", "statBtn", "statisticsBtn", "thongKeBtn"].forEach(id => {
+    safeAdd(id, "click", showStudyStats);
+  });
+
+  document.querySelectorAll("button").forEach(btn => {
+    const text = (btn.textContent || "").trim().toLowerCase();
+    const aria = (btn.getAttribute("aria-label") || "").toLowerCase();
+    const title = (btn.getAttribute("title") || "").toLowerCase();
+
+    if (
+      text.includes("thống kê") ||
+      aria.includes("thống kê") ||
+      title.includes("thống kê") ||
+      aria.includes("statistics") ||
+      title.includes("statistics")
+    ) {
+      btn.addEventListener("click", showStudyStats);
+    }
+  });
+}
+
 function getSelectedLang() {
   const langSelect = $("langSelect");
   return langSelect ? langSelect.value : "ja";
@@ -141,6 +336,8 @@ function saveTodayLearned() {
     learned.push(wordId);
     localStorage.setItem(todayKey, JSON.stringify(learned));
   }
+
+  saveLearnedByLang(getSelectedLang(), wordId);
 }
 
 function updateTodayProgress() {
@@ -327,6 +524,7 @@ function showWord() {
   }
 
   updateTodayProgress();
+  saveAppState();
 }
 
 function nextWord() {
@@ -437,7 +635,8 @@ function filterWords() {
     }
   }
 
-  currentIndex = 0;
+  if (currentIndex >= words.length) currentIndex = 0;
+  if (currentIndex < 0) currentIndex = 0;
   showWord();
 }
 
@@ -560,8 +759,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   adjustTopLayoutLikeMockup();
   setupLangSelect();
+  restoreAppStateBeforeFilter();
   setupCategorySelect();
+  restoreCategoryAfterSetup();
   filterWords();
+  setupSearchButton();
+  setupStatsButton();
 
   safeAdd("nextBtn", "click", nextWord);
   safeAdd("prevBtn", "click", prevWord);
@@ -582,12 +785,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentMode === "listen") {
       setupLevelSelect();
     }
+    currentIndex = 0;
     filterWords();
+    saveAppState();
     if (currentMode === "listen") setText("playingText", "Đã đổi ngôn ngữ nghe");
   });
 
   safeAdd("categorySelect", "change", function () {
+    currentIndex = 0;
     filterWords();
+    saveAppState();
     if (currentMode === "listen") setText("playingText", "Đã đổi cấp độ nghe");
   });
 
